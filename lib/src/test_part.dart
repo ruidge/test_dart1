@@ -1,6 +1,9 @@
-// TODO: Put public facing types in this file.
+import 'dart:math';
 
-/// Checks if you are awesome. Spoiler: you are.
-class Awesome {
-  bool get isAwesome => true;
+part 'test_part1.dart';
+
+part 'test_part2.dart';
+
+int maxIntInPart(int a, int b) {
+  return max(a, b);
 }

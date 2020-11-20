@@ -18,9 +18,3 @@ extension ListExtension on List {
     print('$this');
   }
 }
-
-void main() {
-  String dartStr = 'dart';
-  dartStr.printSelf();
-  int i;
-}
