@@ -1,5 +1,3 @@
-import 'package:test_dart1/test_dart1.dart';
-
 Future<String> future1 = Future.delayed(Duration(seconds: 1), () {
   var value = '111';
   print(value);

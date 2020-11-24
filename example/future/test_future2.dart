@@ -1,14 +1,16 @@
 void main() {
   print('111');
-  getData();
+  var gd = getData();
+  print(gd.runtimeType);
   print('222');
 }
 
-void getData() async {
-  String result = await Future<String>.delayed(Duration(milliseconds: 0), () {
-    return "333";
+getData() async {
+  /*await*/ Future<String>.delayed(Duration(seconds: 1), () {
+    String result = '333';
+    print(result);
+    return result;
   });
 
-  print(result);
   print('444');
 }
