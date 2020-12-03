@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'dart:isolate';
+import 'package:test_dart1/lib_extension.dart';
 
 int tick = 0;
 
 Function funTick = () {
   tick++;
-  print('$tick ${DateTime.now()}');
+  print('$tick ${tick.timestamp}');
 };
 
 void mainLoop() {
-  Future.delayed(Duration(seconds: 1), funTick).then((value) => mainLoop());
+  Future.delayed(Duration(seconds: 1), funTick).then((_) => mainLoop());
 }
 
 void mainTick() {
@@ -34,14 +35,15 @@ void mainSleepBlock() {
   });
 }
 
-void sleepBlockInIsolate(SendPort port) {
+void sleepBlockInIsolate1(SendPort port) {
   var name = Isolate.current.debugName;
+  print('Isolate : $name ${name.timestamp}');
 
   ReceivePort receivePort = new ReceivePort();
   SendPort sendPort = receivePort.sendPort;
 
   receivePort.listen((message) {
-    print('$name:  listen $message');
+    print('Isolate : $name   listen $message');
   });
   port.send([0, sendPort]);
   sleep(Duration(seconds: 3));
@@ -52,9 +54,10 @@ void sleepBlockInIsolate(SendPort port) {
 void mainSleepNonBlock() {
   // compute(sleepBlock, '');
   ReceivePort receivePort = ReceivePort();
-  Future future = Isolate.spawn(sleepBlockInIsolate, receivePort.sendPort);
+  Future future = Isolate.spawn(sleepBlockInIsolate1, receivePort.sendPort);
   future.then((_) {
     var name = Isolate.current.debugName;
+    print('Isolate : $name ${name.timestamp}');
     SendPort sendPort;
     receivePort.listen((message) {
       print('$name: then  listen $message');

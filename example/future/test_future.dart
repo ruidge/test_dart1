@@ -1,26 +1,30 @@
+import 'package:test_dart1/lib_extension.dart';
+
 Future<String> future1 = Future.delayed(Duration(seconds: 1), () {
   var value = '111';
-  print(value);
+  print('$value ${value.timestamp}');
   return value;
 });
 
 Future<String> future2 = Future.delayed(Duration(seconds: 2), () {
   var value = '222';
-  print(value);
+  print('$value ${value.timestamp}');
   return value;
 });
 
 Future<String> future3 = Future.delayed(Duration(seconds: 3), () {
   var value = '333';
-  print(value);
+  print('$value ${value.timestamp}');
   return value;
 });
 
 void main() {
+  print('-------------------${''.timestamp}');
+
   // fun1();
   // fun2();
-  fun3();
-  // fun4();
+  // fun3();
+  fun4();
 }
 
 void fun1() {
